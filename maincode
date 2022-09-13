@@ -1,1 +1,45 @@
+import imp
+from tkinter import *
+import time
+import random
+from PIL import Image,ImageTk
 
+
+root = Tk()
+root.geometry("1920x1080")
+root.title('madlib page')
+root.withdraw()
+#  creates the main page, used for printing the final results of the madlib
+
+top1=Toplevel()
+top1.geometry("1920x1080")
+top1.title('Intro page')
+#  creates a top level w the purpose of an introducturay page in mind
+
+top2=Toplevel()
+top2.geometry("1920x1080")
+top2.title('Display Page')
+top2.withdraw()
+#  creates a top level w the purpose of user display configuration in mind
+
+top3 = Toplevel()
+top3.geometry("1920x1080")
+top3.title('Enter Madlibs')
+top3.withdraw()
+#  creates a top Level with the purpose of having the user input their words
+
+menu = Menu()
+file= Menu(menu, tearoff=1)
+file.add_command(label='Display Page',command="this will be command to display page")
+file.add_command(label='Quit',command=root.destroy)
+menu.add_cascade(label='File',menu=file)
+root.config(menu=menu)
+top1.config(menu=menu)
+top2.config(menu=menu)
+top3.config(menu=menu)
+#  file menu
+
+top3.mainloop()
+top1.mainloop()
+top2.mainloop()
+root.mainloop()
