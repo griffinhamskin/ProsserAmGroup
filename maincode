@@ -15,14 +15,7 @@ westernTheme = False
 depressionTheme = False
 fantasyTheme = False
 
-"""
-madlibHorror
-madlibWestern
-madlibGreatDepression
-madlibWar
-madlibFantasy
 
-"""
 def goDisplay():
     top2.deiconify()
     top1.withdraw()
@@ -76,6 +69,11 @@ def Changetextcolor():
     emotionlabel.config(fg = result[1])
     place1label.config(fg = result[1])
     verbINGlabel.config(fg = result[1])
+    Storylabel1.config(fg = result[1])
+    Storylabel2.config(fg = result[1])
+    Storylabel3.config(fg = result[1])
+    Storylabel4.config(fg = result[1])
+    Storylabel5.config(fg = result[1])
     print(result[1])
 #  adds a color wheel that sets the background of the pages, and the labels, to the user picked color
 def Changetextbackgroundcolor():
@@ -97,6 +95,11 @@ def Changetextbackgroundcolor():
     emotionlabel.config(bg = result[1])
     place1label.config(bg = result[1])
     verbINGlabel.config(bg = result[1])
+    Storylabel1.config(bg = result[1])
+    Storylabel2.config(bg = result[1])
+    Storylabel3.config(bg = result[1])
+    Storylabel4.config(bg = result[1])
+    Storylabel5.config(bg = result[1])
     print(result[1])
 def Changebuttonbackgroundcolor():
     result = askcolor(title = "Tkinter background Color Chooser")
@@ -232,11 +235,11 @@ def store():
     madlibGreatDepression = f'When times were {i}, and {i5} is low. {i11} was in a dark, dark place. Why? Because of the great {i12}. The economy has completely crashed, \n and everyone was {i2}. Everyone except the {i6}. SIKEE UHHH BIG MONSTER SHOWS UP AND YOU USE A {i2} {i7} TO WALLOP IT INTO THE OCEAN.\n CONGRATS YOU SAVED AN ORPHAN NAMED {i7}!!!! YOU {i9} INTO THE SUN AND {i8} INTO STARDUST!!! BACK ON EARTH EVERYONE IS\n {i12} YOUR BATTLE, THEY FEEL {i10} THINKING ABOUT YOU. THE END.'
     madlibWar = f'During the {i} battle of {i11} the {i8} bombs came and they terrified the whole frontline and trying to protect the {i5} became close to impossible. \n The {i2} regiment had {i9} past the frontline and straight into the enemy.\n Most of the regiment had died but they won and now the {i6} that they tried to protect is\n in danger. Whilst {i12} the reginemnt all felt {i10} and proceeded to {i4} {i8} headfirst into {i7} concluding hte battle and winning the fight without the {i8} bombs going off.'
     madlibFantasy = f'In the lands of {i11} there was once a {i} hero he would be the one destined to save {i11} and defeat the evil warlock who was the most {i2} in all the lands. \n The {i} hero would have to {i9} and {i8} to save everyone.\n On the heroes {i3} adventure he would be caught off gaurd whilst {i12} and the evil warlock would\n {i4} {i9} to put an end to the hero however luckily for the hero his {i10} got the best of him and he instead started {i12} to {i5} but instead found a {i6}\n and used it to stop the evil warlock. In the heros later days he would live a good life in {i11} and have a {i3} {i7} monopoly.'
-    Storylabel1.config(text=madlibHorror)
-    Storylabel2.config(text=madlibWestern)
-    Storylabel3.config(text=madlibGreatDepression)
-    Storylabel4.config(text=madlibWar)
-    Storylabel5.config(text=madlibFantasy)
+    Storylabel1.config(text=madlibHorror, font='Times, 20')
+    Storylabel2.config(text=madlibWestern, font='Times, 20')
+    Storylabel3.config(text=madlibGreatDepression, font='Times, 20')
+    Storylabel4.config(text=madlibWar, font='Times, 20')
+    Storylabel5.config(text=madlibFantasy, font='Times, 20')
 
 def remove_text():
     Storylabel1.pack_forget()
@@ -262,6 +265,7 @@ def openWestern():
     depressionTheme = False
     fantasyTheme = False
     Storylabel2.pack()
+ 
     
 def openHorror():
     horrorTheme = True
@@ -270,6 +274,7 @@ def openHorror():
     depressionTheme = False
     fantasyTheme = False
     Storylabel1.pack()
+
 def openWar():
     warTheme = True
     westernTheme =False
@@ -277,6 +282,7 @@ def openWar():
     depressionTheme = False
     fantasyTheme = False
     Storylabel4.pack()
+
 def openDepression():
     depressionTheme = True
     westernTheme =False
@@ -284,6 +290,7 @@ def openDepression():
     warTheme = False
     fantasyTheme = False
     Storylabel3.pack()
+
 def openFantasy():
     fantasyTheme = True
     westernTheme =False
@@ -291,6 +298,7 @@ def openFantasy():
     warTheme = False
     depressionTheme = False
     Storylabel5.pack()
+
 
 
 
@@ -419,7 +427,8 @@ if top1==ACTIVE:
     time.sleep(10)
     top1.withdraw()
     
-
+Buttonlabel3 = Label(top3, text='Be sure to click the Delete button before going again or if you have clicked on another theme. \n also if you have not be sure to go to the display page.', fg='black', font='times, 13')
+Buttonlabel3.place(x='10', y='400')
 
 Displaylabel = Label(top2, text='Welcome to the display page this is where you can customize the application', fg='black', font='times, 27')
 Displaylabel.place(x='360', y='24')
