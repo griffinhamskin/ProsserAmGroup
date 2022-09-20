@@ -1,13 +1,15 @@
+from ast import Delete
 from cProfile import label
+from shutil import move
 from tkinter import *
 import tkinter.font as font
 import time
 import random
+from turtle import Turtle
 from unittest import result
 from PIL import Image,ImageTk
 from tkinter.colorchooser import askcolor
 z=0
-
 
 horrorTheme= False
 warTheme = False
@@ -35,6 +37,18 @@ def goMadlib():
     root.deiconify()
 #  command to open Main Page, closes all roots and opens Main Page   
 def goEnterMadlib():
+    adjective1.delete(0,END)
+    adjective2.delete(0,END)
+    adjective3.delete(0,END)
+    adverb.delete(0,END)
+    verb1.delete(0,END)
+    verb2.delete(0,END)
+    verbING.delete(0,END)
+    place1.delete(0,END)
+    emotion.delete(0,END)
+    noun1.delete(0,END)
+    noun2.delete(0,END)
+    noun3.delete(0,END)
     top2.withdraw()
     top1.withdraw()
     top3.deiconify()
@@ -47,6 +61,11 @@ def Changebackground():
     top2.config(bg = result[1])
     top3.config(bg = result[1])
     label2.config(bg = result[1])
+    R1.config(bg = result[1])
+    R2.config(bg = result[1])
+    R3.config(bg = result[1])
+    R4.config(bg = result[1])
+    R5.config(bg = result[1])
     print(result[1])
 #  adds a color wheel that sets the background of the pages, and the labels, to the user picked color
 def Changetextcolor():
@@ -74,6 +93,11 @@ def Changetextcolor():
     Storylabel3.config(fg = result[1])
     Storylabel4.config(fg = result[1])
     Storylabel5.config(fg = result[1])
+    R1.config(fg = result[1])
+    R2.config(fg = result[1])
+    R3.config(fg = result[1])
+    R4.config(fg = result[1])
+    R5.config(fg = result[1])
     print(result[1])
 #  adds a color wheel that sets the background of the pages, and the labels, to the user picked color
 def Changetextbackgroundcolor():
@@ -111,6 +135,8 @@ def Changebuttonbackgroundcolor():
     button5.config(bg = result[1])
     button6.config(bg = result[1])
     introbutton.config(bg = result[1])
+    quitButton.config(bg = result[1])
+    displayButton.config(bg = result[1])
     print(result[1])
 def Changebuttontextcolor():
     result = askcolor(title = "Tkinter text Color Chooser")
@@ -122,6 +148,8 @@ def Changebuttontextcolor():
     button5.config(fg = result[1])
     button6.config(fg = result[1])
     introbutton.config(fg = result[1])
+    quitButton.config(fg = result[1])
+    displayButton.config(fg = result[1])
     print(result[1])
 def Changeentrytextcolor():
     result = askcolor(title = "Tkinter text Color Chooser")
@@ -235,28 +263,24 @@ def store():
     madlibGreatDepression = f'When times were {i}, and {i5} is low. {i11} was in a dark, dark place. Why? Because of the great {i12}. The economy has completely crashed, \n and everyone was {i2}. Everyone except the {i6}. SIKEE UHHH BIG MONSTER SHOWS UP AND YOU USE A {i2} {i7} TO WALLOP IT INTO THE OCEAN.\n CONGRATS YOU SAVED AN ORPHAN NAMED {i7}!!!! YOU {i9} INTO THE SUN AND {i8} INTO STARDUST!!! BACK ON EARTH EVERYONE IS\n {i12} YOUR BATTLE, THEY FEEL {i10} THINKING ABOUT YOU. THE END.'
     madlibWar = f'During the {i} battle of {i11} the {i8} bombs came and they terrified the whole frontline and trying to protect the {i5} became close to impossible. \n The {i2} regiment had {i9} past the frontline and straight into the enemy.\n Most of the regiment had died but they won and now the {i6} that they tried to protect is\n in danger. Whilst {i12} the reginemnt all felt {i10} and proceeded to {i4} {i8} headfirst into {i7} concluding hte battle and winning the fight without the {i8} bombs going off.'
     madlibFantasy = f'In the lands of {i11} there was once a {i} hero he would be the one destined to save {i11} and defeat the evil warlock who was the most {i2} in all the lands. \n The {i} hero would have to {i9} and {i8} to save everyone.\n On the heroes {i3} adventure he would be caught off gaurd whilst {i12} and the evil warlock would\n {i4} {i9} to put an end to the hero however luckily for the hero his {i10} got the best of him and he instead started {i12} to {i5} but instead found a {i6}\n and used it to stop the evil warlock. In the heros later days he would live a good life in {i11} and have a {i3} {i7} monopoly.'
-    Storylabel1.config(text=madlibHorror, font='Times, 20')
-    Storylabel2.config(text=madlibWestern, font='Times, 20')
-    Storylabel3.config(text=madlibGreatDepression, font='Times, 20')
-    Storylabel4.config(text=madlibWar, font='Times, 20')
-    Storylabel5.config(text=madlibFantasy, font='Times, 20')
-
-def remove_text():
-    Storylabel1.pack_forget()
-    Storylabel2.pack_forget()
-    Storylabel3.pack_forget()
-    Storylabel4.pack_forget()
-    Storylabel5.pack_forget()
+    Storylabel1.config(text=madlibHorror, font='Times, 18')
+    Storylabel2.config(text=madlibWestern, font='Times, 18')
+    Storylabel3.config(text=madlibGreatDepression, font='Times, 18')
+    Storylabel4.config(text=madlibWar, font='Times, 18')
+    Storylabel5.config(text=madlibFantasy, font='Times, 18')
 
 
 
-    
 
 def enter(e):
     store()
-    moveOn = Button(top3, text= "Move on once you have all your answers!", command=goMadlib,width=35, bg='black', fg='snow')
+    def moveOnForget():
+        moveOn.place_forget()
+        goMadlib()
+    moveOn = Button(top3, text= "Move on once you have all your answers!",width=35, bg='deep slate blue', fg='snow', command=moveOnForget)
     moveOn['font'] = myFont
     moveOn.place(x=690,y=1000)
+    
 
 def openWestern():
     westernTheme =True
@@ -264,7 +288,15 @@ def openWestern():
     warTheme = False
     depressionTheme = False
     fantasyTheme = False
-    Storylabel2.pack()
+    if(westernTheme==True):
+        Storylabel1.place_forget()
+        Storylabel5.place_forget()
+        Storylabel4.place_forget()
+        Storylabel3.place_forget()
+        Storylabel2.place(relx=.5, rely=.5,anchor= CENTER)
+    else:
+        Storylabel2.pack_forget()
+    westernTheme=False
  
     
 def openHorror():
@@ -273,15 +305,30 @@ def openHorror():
     warTheme = False
     depressionTheme = False
     fantasyTheme = False
-    Storylabel1.pack()
-
+    if(horrorTheme==True):
+        Storylabel5.place_forget()
+        Storylabel2.place_forget()
+        Storylabel4.place_forget()
+        Storylabel3.place_forget()
+        Storylabel1.place(relx=.5, rely=.4,anchor= CENTER)
+    else:
+        Storylabel1.place_forget()
+    horrorTheme=False
 def openWar():
     warTheme = True
     westernTheme =False
     horrorTheme = False
     depressionTheme = False
     fantasyTheme = False
-    Storylabel4.pack()
+    if(warTheme==True):
+        Storylabel1.place_forget()
+        Storylabel2.place_forget()
+        Storylabel5.place_forget()
+        Storylabel3.place_forget()
+        Storylabel4.place(relx=.5, rely=.4,anchor= CENTER)
+    else:
+        Storylabel4.place_forget()
+    warTheme=False
 
 def openDepression():
     depressionTheme = True
@@ -289,7 +336,15 @@ def openDepression():
     horrorTheme = False
     warTheme = False
     fantasyTheme = False
-    Storylabel3.pack()
+    if(depressionTheme==True):
+        Storylabel1.place_forget()
+        Storylabel2.place_forget()
+        Storylabel4.place_forget()
+        Storylabel5.place_forget()
+        Storylabel3.place(relx=.5, rely=.4,anchor= CENTER)
+    else:
+        Storylabel3.place_forget()
+    depressionTheme=False
 
 def openFantasy():
     fantasyTheme = True
@@ -297,7 +352,15 @@ def openFantasy():
     horrorTheme = False
     warTheme = False
     depressionTheme = False
-    Storylabel5.pack()
+    if(fantasyTheme==True):
+        Storylabel1.place_forget()
+        Storylabel2.place_forget()
+        Storylabel4.place_forget()
+        Storylabel3.place_forget()
+        Storylabel5.place(relx=.5, rely=.4,anchor= CENTER)
+    else:
+        Storylabel5.place_forget()
+    fantasyTheme=False
 
 
 
@@ -337,34 +400,29 @@ Storylabel3 = Label(root, text="")
 Storylabel4 = Label(root, text="")
 Storylabel5 = Label(root, text="")
 
-resetbutton = Button(top3, text="If pressed multiple themes or while replaying click here before continue", command=remove_text).place(x=10, y=10)
+
 
 var = IntVar()
 R1 = Radiobutton(top3, text="Horror Theme", variable=var, value=1,
-                command=openHorror)
+                command=openHorror, bg='white')
 R1.place(x=10, y=50)
 
 R2 = Radiobutton(top3, text="Western Theme", variable=var, value=2,
-                command=openWestern)
+                command=openWestern, bg='white')
 R2.place(x=10, y=100)
 
 R3 = Radiobutton(top3, text="Depression Theme", variable=var, value=3,
-                command=openDepression)
+                command=openDepression, bg='white')
 R3.place(x=10, y=150)
 
 R4 = Radiobutton(top3, text="Fantasy Theme", variable=var, value=4,
-                command=openFantasy)
+                command=openFantasy, bg='white')
 R4.place(x=10, y=200)
 
 R5 = Radiobutton(top3, text="War Theme", variable=var, value=5,
-                command=openWar)
+                command=openWar, bg='white')
 R5.place(x=10, y=250)
 
-themeButton1 = Button(top3, text='Wild West Theme', command=Changetextcolor, bg = "black", fg="white")
-themeButton2 = Button(top3, text='Fantasy Adventure Theme', command=Changetextcolor, bg = "black", fg="white")
-themeButton3 = Button(top3, text='Great Depression Theme', command=Changetextcolor, bg = "black", fg="white")
-themeButton4 = Button(top3, text='Haunted House Theme', command=Changetextcolor, bg = "black", fg="white")
-themeButton5 = Button(top3, text='Great War Madlib', command=Changetextcolor, bg = "black", fg="white")
 
 introLabel = Label(top1, text=f'Mad Libs (a play on ad lib, from Latin ad libitum - as you wish)\n is a word game where one player prompts another for a list of words to substitute for blanks in a story;\n these word substitutions have a humorous effect when the resulting story is then read aloud.',
  bg='Black', fg='White', font='Times, 24')
@@ -422,13 +480,7 @@ place1label.pack()
 place1.pack()
 verbINGlabel.pack()
 verbING.pack()
-
-if top1==ACTIVE:
-    time.sleep(10)
-    top1.withdraw()
     
-Buttonlabel3 = Label(top3, text='Be sure to click the Delete button before going again or if you have clicked on another theme. \n also if you have not be sure to go to the display page.', fg='black', font='times, 13')
-Buttonlabel3.place(x='10', y='400')
 
 Displaylabel = Label(top2, text='Welcome to the display page this is where you can customize the application', fg='black', font='times, 27')
 Displaylabel.place(x='360', y='24')
@@ -516,9 +568,9 @@ quitButton = Button(root, text='Quit', command=root.destroy, bg = "black", fg="w
 quitButton['font'] = myFont
 quitButton.pack(side=BOTTOM)
 
-quitButton = Button(top3, text='Display Page', command=goDisplay, bg = "black", fg="white")
-quitButton['font'] = myFont
-quitButton.pack(side=RIGHT)
+displayButton = Button(top3, text='Display Page', command=goDisplay, bg = "black", fg="white")
+displayButton['font'] = myFont
+displayButton.pack(side=RIGHT)
 
 top1.attributes('-fullscreen', True)
 top2.attributes('-fullscreen', True)
